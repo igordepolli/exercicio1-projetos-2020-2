@@ -1,8 +1,9 @@
-package com.pss.exercicio1.main;
+package com.pss.exercicio1.view;
 
 import com.pss.exercicio1.model.Employee;
 import com.pss.exercicio1.model.Occupation;
-import com.pss.exercicio1.utils.SortEmployees;
+import com.pss.exercicio1.model.Payment;
+import com.pss.exercicio1.utils.ManipulationEmployees;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class Main {
         int varReadEmployee;
         double varReadValue;
         Employee employee = null;
+        Payment payment = new Payment();
 
         //Scanner
         Scanner readData = new Scanner(System.in);
@@ -29,21 +31,19 @@ public class Main {
         Occupation oc4 = new Occupation(4, "Diretor Geral", 15000.00);
 
         //Instâncias de empregados
-        Employee emp1 = new Employee(1, "João", oc1);
-        Employee emp2 = new Employee(2, "Maria", oc2);
-        Employee emp3 = new Employee(3, "Felipe", oc3);
-        Employee emp4 = new Employee(4, "Carlos", oc4);
+        Employee emp1 = new Employee(1, "João", oc3);
+        Employee emp2 = new Employee(2, "Maria", oc4);
+        Employee emp3 = new Employee(3, "Felipe", oc2);
+        Employee emp4 = new Employee(4, "Carlos", oc1);
+        
 
         //Criação e população da lista de empregados
         List<Employee> employees = new ArrayList<>();
         employees.addAll(Arrays.asList(emp4, emp1, emp3, emp2));
 
         //Ordenação da lista de empregados
-        SortEmployees sortEmployees = new SortEmployees(employees);
-        List<Employee> sortedEmployeesList = sortEmployees.getSortedEmployeesByOccupation();
-
-        //Criando Iterator
-        Iterator<Employee> employeesAsIterator = sortedEmployeesList.iterator();
+        ManipulationEmployees manipulationEmployees = new ManipulationEmployees(employees);
+        List<Employee> sortedEmployeesList = manipulationEmployees.getSortedEmployeesByOccupation();
 
         //Menu
         //Solicitando e Buscando Funcionário
@@ -54,18 +54,25 @@ public class Main {
         });
         varReadEmployee = readData.nextInt();
         readData.nextLine();
-
-        for (Employee e : employees) {
-            if (e.getCode() == varReadEmployee) {
-                employee = e;
-            }
-        }
+        employee = manipulationEmployees.foundEmployee(varReadEmployee);
 
         //Solicitando Valor
         System.out.println("Qual é o valor que deseja solicitar?");
         varReadValue = readData.nextDouble();
         readData.nextLine();
 
+        if (employee != null) {
+            if (employee.approvePayment(varReadValue)) {
+                System.out.println("Pagamento aprovado pelo " + employee.getOccupation().getName() + " " + employee.getName());
+            } else {
+                Iterator<Employee> it = manipulationEmployees.iteratorEmployees(varReadEmployee);
+                List<Employee> listAux = new ArrayList<>();
+                it.forEachRemaining(listAux::add);
+                //payment.checkPayment(listAux, varReadValue);
+            }
+        }
+
+        /*
         //Verificando    
         if (employee != null) {
             while (employeesAsIterator.hasNext()) {
@@ -78,7 +85,7 @@ public class Main {
         }
 
         //Imprimindo
-        /*
+        
         for (Employee e : sortedEmployeesList) {
             if (e.approvePayment(17800.00)) {
                 System.out.println("Pagamento aprovado pelo " + e.getOccupation().getName() + " " + e.getName());

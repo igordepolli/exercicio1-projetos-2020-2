@@ -38,6 +38,10 @@ public class Employee implements Comparable<Employee> {
     public void setOccupation(Occupation occupation) {
         this.occupation = occupation;
     }
+    
+    public String printEmployee() {
+        return code + ". " + name;
+    }
 
     public boolean approvePayment(Double value) {
         return occupation.getLimitPayment() >= value;

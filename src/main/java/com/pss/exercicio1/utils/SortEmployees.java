@@ -14,7 +14,7 @@ public class SortEmployees {
         this.employees = employees;
     }
 
-    public List<Employee> getSortedEmployeeByOccupation() {
+    public List<Employee> getSortedEmployeesByOccupation() {
         Collections.sort(employees);
         return employees;
     }

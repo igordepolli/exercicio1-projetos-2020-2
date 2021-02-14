@@ -4,7 +4,6 @@ import com.pss.exercicio1.model.Employee;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 public class ManipulationEmployees {
@@ -16,30 +15,27 @@ public class ManipulationEmployees {
     }
 
     public List<Employee> getSortedEmployeesByOccupation() {
-        Collections.sort(employees);
+        Collections.sort(this.employees);
         return employees;
     }
-    
+
     public Employee foundEmployee(int employeeCode) {
-       Employee employee = null;
-       
+        Employee employee = null;
         for (Employee e : employees) {
             if (e.getCode() == employeeCode) {
                 employee = e;
             }
         }
-        
         return employee;
     }
     
-    public Iterator<Employee> iteratorEmployees(int x) {
-        Iterator<Employee> it = employees.iterator();
+    public List<Employee> filteringEmployeesList(int x, List<Employee> employees) {
+        List<Employee> arrayList = new ArrayList<>();
         
-        for (; x > 0; --x) {
-            it.next();
+        for (int i = x; i < employees.size(); i++) {
+            arrayList.add(employees.get(i));
         }
-   
-        return it;
-    }
 
+        return arrayList;
+    }
 }

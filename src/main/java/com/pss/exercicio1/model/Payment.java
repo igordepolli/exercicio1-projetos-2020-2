@@ -9,13 +9,36 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(int code, Employee employee, Double value) {
-        this.code = code;
+    public Payment(Employee employee, Double value) {
         this.employee = employee;
         this.value = value;
     }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
     
-    public boolean checkPayment(Employee employee, Double value) {
+    public boolean checkPayment() {
         return employee.approvePayment(value);
     }
 

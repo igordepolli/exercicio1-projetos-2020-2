@@ -7,7 +7,6 @@ import com.pss.exercicio1.utils.ManipulationEmployees;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,10 +15,8 @@ public class Main {
     public static void main(String[] args) {
 
         //Atributos
-        int varReadEmployee;
-        double varReadValue;
-        Employee employee = null;
-        Payment payment = new Payment();
+        int varReadEmployee = 0;
+        double varReadValue = 0;
 
         //Scanner
         Scanner readData = new Scanner(System.in);
@@ -35,7 +32,6 @@ public class Main {
         Employee emp2 = new Employee(2, "Maria", oc4);
         Employee emp3 = new Employee(3, "Felipe", oc2);
         Employee emp4 = new Employee(4, "Carlos", oc1);
-        
 
         //Criação e população da lista de empregados
         List<Employee> employees = new ArrayList<>();
@@ -47,51 +43,43 @@ public class Main {
 
         //Menu
         //Solicitando e Buscando Funcionário
-        System.out.println("Qual funcionário solicitará o pagamento?");
-
-        employees.forEach(e -> {
-            System.out.println(e.printEmployee());
-        });
-        varReadEmployee = readData.nextInt();
-        readData.nextLine();
-        employee = manipulationEmployees.foundEmployee(varReadEmployee);
+        while (varReadEmployee < 1 || varReadEmployee > 4) {
+            System.out.println("Digite o código do funcionário que solicitará o pagamento:");
+            employees.forEach(e -> {
+                System.out.println(e.printEmployee());
+            });
+            varReadEmployee = readData.nextInt();
+            readData.nextLine();
+            if (varReadEmployee < 1 || varReadEmployee > 4) {
+                System.out.println("Código de funcionário inválido!");
+            }
+        }
 
         //Solicitando Valor
-        System.out.println("Qual é o valor que deseja solicitar?");
-        varReadValue = readData.nextDouble();
-        readData.nextLine();
-
-        if (employee != null) {
-            if (employee.approvePayment(varReadValue)) {
-                System.out.println("Pagamento aprovado pelo " + employee.getOccupation().getName() + " " + employee.getName());
-            } else {
-                Iterator<Employee> it = manipulationEmployees.iteratorEmployees(varReadEmployee);
-                List<Employee> listAux = new ArrayList<>();
-                it.forEachRemaining(listAux::add);
-                //payment.checkPayment(listAux, varReadValue);
-            }
+        while (varReadValue < 1 || varReadValue > 15000) {
+            System.out.println("Qual é o valor que deseja solicitar?");
+            varReadValue = readData.nextDouble();
+            readData.nextLine();
+            if (varReadValue < 1 || varReadValue > 15000)
+                System.out.println("O valor solicitado deve ser entre 1 e 15000");
         }
 
-        /*
-        //Verificando    
-        if (employee != null) {
-            while (employeesAsIterator.hasNext()) {
-                if (employee.approvePayment(varReadValue)) {
-                    System.out.println("Pagamento aprovado pelo " + employee.getOccupation().getName() + " " + employee.getName());
-                    break;
-                }
-                employee = employeesAsIterator.next();
-            }
-        }
+        //Filtrando lista de empregados para retornar um arraylist que retorne apenas o funcionário de sua hierarquia em diante    
+        List<Employee> arrayList = manipulationEmployees.filteringEmployeesList(sortedEmployeesList.indexOf(
+                new Employee(varReadEmployee)), sortedEmployeesList);
 
-        //Imprimindo
-        
-        for (Employee e : sortedEmployeesList) {
-            if (e.approvePayment(17800.00)) {
-                System.out.println("Pagamento aprovado pelo " + e.getOccupation().getName() + " " + e.getName());
+        //Percorrendo arraylist filtrado e recusando/aprovando pagamento
+        for (Employee e : arrayList) {
+            Payment payment = new Payment(e, varReadValue);
+            if (payment.checkPayment()) {
+                System.out.println("Pagamento aprovado por " + payment.getEmployee().getName()
+                        + ", o(a) " + payment.getEmployee().getOccupation().getName());
                 break;
+            } else {
+                System.out.println("Pagamento recusado para " + payment.getEmployee().getName()
+                        + ". Fora do limite para um(a) " + payment.getEmployee().getOccupation().getName());
             }
         }
-         */
+
     }
 }

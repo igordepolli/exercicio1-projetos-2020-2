@@ -8,7 +8,7 @@ public class Employee implements Comparable<Employee> {
 
     public Employee() {
     }
-    
+
     public Employee(int code) {
         this.code = code;
     }
@@ -42,10 +42,6 @@ public class Employee implements Comparable<Employee> {
     public void setOccupation(Occupation occupation) {
         this.occupation = occupation;
     }
-    
-    public String printEmployee() {
-        return code + ". " + name;
-    }
 
     @Override
     public int hashCode() {
@@ -73,11 +69,13 @@ public class Employee implements Comparable<Employee> {
         return occupation.getLimitPayment() >= value;
     }
 
+    public String printEmployee() {
+        return code + ". " + name;
+    }
+
     @Override
     public int compareTo(Employee other) {
-        return (this.getOccupation().getCode() < other.getOccupation().getCode() ? -1 : 
-                (this.getOccupation().getCode() == other.getOccupation().getCode() ? 0 : 1));
+        return (this.getOccupation().getCode() < other.getOccupation().getCode() ? -1
+                : (this.getOccupation().getCode() == other.getOccupation().getCode() ? 0 : 1));
     }
-    
-    
 }

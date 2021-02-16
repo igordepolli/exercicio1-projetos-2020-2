@@ -1,2 +1,4 @@
+Main.class
 com/pss/exercicio1/model/Employee.class
+com/pss/exercicio1/controller/ControllerEmployees.class
 com/pss/exercicio1/model/Occupation.class

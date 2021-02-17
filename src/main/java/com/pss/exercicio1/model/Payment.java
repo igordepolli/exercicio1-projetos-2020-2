@@ -67,15 +67,11 @@ public class Payment {
         if (value < 1) {
             throw new Exception("O valor solicitado deve ser maior que 0");
         }
-        if (value > 15000) {
-            throw new Exception("Valor fora do limite máximo permitido");
-        }
         return employee.approvePayment(value);
     }
 
     public String paymentStatusMessageApproved() {
         return "Pagamento aprovado para " + employee.getName() + ", o(a) " + employee.getOccupation().getName();
-
     }
 
     public String paymentStatusMessageRefused() {

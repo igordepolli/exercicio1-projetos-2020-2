@@ -15,7 +15,7 @@ public final class ControllerEmployees {
 
     public ControllerEmployees(List<Employee> employees) {
         this.employees = employees;
-        getSortedEmployeesByOccupation();
+        sortedEmployeesByOccupation();
     }
 
     public List<Employee> getEmployees() {
@@ -26,7 +26,7 @@ public final class ControllerEmployees {
         this.employees = employees;
     }
 
-    public void getSortedEmployeesByOccupation() {
+    private void sortedEmployeesByOccupation() {
         Collections.sort(this.employees);
     }
 
@@ -51,12 +51,12 @@ public final class ControllerEmployees {
         return -1;
     }
 
-    public Employee foundNextSkilledEmployee(int x, double valuePayment) {
+    public Employee foundNextSkilledEmployee(int x, double valuePayment) throws Exception {
         for (int i = x + 1; i < employees.size(); i++) {
             if (employees.get(i).approvePayment(valuePayment)) {
                 return employees.get(i);
             }
         }
-        return null;
+        throw new Exception("Não há um funcionário que possa aprovar esse pagamento!");
     }
 }

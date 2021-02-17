@@ -9,10 +9,6 @@ public class Employee implements Comparable<Employee> {
     public Employee() {
     }
 
-    public Employee(int code) {
-        this.code = code;
-    }
-
     public Employee(int code, String name, Occupation occupation) {
         this.code = code;
         this.name = name;

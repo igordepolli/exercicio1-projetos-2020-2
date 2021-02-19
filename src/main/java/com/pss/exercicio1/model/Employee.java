@@ -39,28 +39,6 @@ public class Employee implements Comparable<Employee> {
         this.occupation = occupation;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 11 * hash + this.code;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Employee other = (Employee) obj;
-        return this.code == other.code;
-    }
-
     public boolean approvePayment(Double value) {
         return occupation.getLimitPayment() >= value;
     }
@@ -71,7 +49,7 @@ public class Employee implements Comparable<Employee> {
 
     @Override
     public int compareTo(Employee other) {
-        return (this.getOccupation().getCode() < other.getOccupation().getCode() ? -1
-                : (this.getOccupation().getCode() == other.getOccupation().getCode() ? 0 : 1));
+        return (this.getOccupation().getLevel() < other.getOccupation().getLevel() ? -1
+                : (this.getOccupation().getLevel() == other.getOccupation().getLevel() ? 0 : 1));
     }
 }

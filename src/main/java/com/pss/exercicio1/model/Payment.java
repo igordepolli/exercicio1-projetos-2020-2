@@ -37,11 +37,11 @@ public class Payment {
     }
 
     public String paymentStatusMessageApproved() {
-        return "Pagamento aprovado para " + employee.getName() + ", o(a) " + employee.getOccupation().getName();
+        return "Pagamento aprovado para " + employee.getName() + " - " + employee.getOccupation().getDescription();
     }
 
     public String paymentStatusMessageRefused() {
-        return "Pagamento recusado para " + employee.getName() + ", fora dos limites para um(uma) " + employee.getOccupation().getName();
+        return "Pagamento recusado para " + employee.getName() + ", fora dos limites para um(uma) " + employee.getOccupation().getDescription();
     }
 
 }

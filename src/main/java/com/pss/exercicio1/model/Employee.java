@@ -44,7 +44,7 @@ public class Employee implements Comparable<Employee> {
     }
 
     public String printEmployee() {
-        return code + ". " + name;
+        return code + ". " + name + " - " + occupation.getDescription();
     }
 
     @Override

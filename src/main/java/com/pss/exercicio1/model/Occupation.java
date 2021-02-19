@@ -1,17 +1,17 @@
 package com.pss.exercicio1.model;
 
-public class Occupation {
+public abstract class Occupation {
 
     private int level;
-    private String name;
+    private String description;
     private Double limitPayment;
 
     public Occupation() {
     }
 
-    public Occupation(int level, String name, Double limitPayment) {
+    public Occupation(int level, String description, Double limitPayment) {
         this.level = level;
-        this.name = name;
+        this.description = description;
         this.limitPayment = limitPayment;
     }
 
@@ -23,12 +23,12 @@ public class Occupation {
         this.level = level;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Double getLimitPayment() {

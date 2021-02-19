@@ -2,10 +2,6 @@ import com.pss.exercicio1.model.Employee;
 import com.pss.exercicio1.model.Occupation;
 import com.pss.exercicio1.model.Payment;
 import com.pss.exercicio1.controller.ControllerEmployees;
-import com.pss.exercicio1.model.FinancialDirector;
-import com.pss.exercicio1.model.GeneralDirector;
-import com.pss.exercicio1.model.GeneralManager;
-import com.pss.exercicio1.model.ImmediateManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,10 +22,10 @@ public class Main {
         Scanner readData = new Scanner(System.in);
 
         //Instâncias de ocupação
-        Occupation oc1 = new ImmediateManager();
-        Occupation oc2 = new GeneralManager();
-        Occupation oc3 = new FinancialDirector();
-        Occupation oc4 = new GeneralDirector();
+        Occupation oc1 = new Occupation(1, "Gerente Imediato", 500.00);
+        Occupation oc2 = new Occupation(2, "Gerente Financeiro", 1500.00);
+        Occupation oc3 = new Occupation(3, "Diretor(a) Financeiro", 5000.00);
+        Occupation oc4 = new Occupation(4, "Diretor(a) Geral", 15000.00);
 
         //Instâncias de empregados
         Employee emp1 = new Employee(1, "João", oc3);

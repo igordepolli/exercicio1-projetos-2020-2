@@ -31,15 +31,12 @@ public final class ControllerEmployees {
     }
 
     public Employee foundEmployee(int code) throws Exception {
-        if (code < 1 || code > 4) {
-            throw new Exception("Funcionário não encontrado!");
-        }
         for (Employee e : employees) {
             if (e.getCode() == code) {
                 return e;
             }
         }
-        return null;
+        throw new Exception("Funcionário não encontrado!");
     }
 
     public int foundEmployeeIndex(int code) {

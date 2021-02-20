@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public final class ControllerEmployees {
+public final class EmployeeController {
 
     private List<Employee> employees = new ArrayList<>();
 
-    public ControllerEmployees() {
+    public EmployeeController() {
     }
 
-    public ControllerEmployees(List<Employee> employees) {
+    public EmployeeController(List<Employee> employees) {
         this.employees = employees;
         sortedEmployeesByOccupation();
     }

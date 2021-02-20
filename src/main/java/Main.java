@@ -1,7 +1,7 @@
 import com.pss.exercicio1.model.Employee;
 import com.pss.exercicio1.model.Occupation;
 import com.pss.exercicio1.model.Payment;
-import com.pss.exercicio1.controller.ControllerEmployees;
+import com.pss.exercicio1.controller.EmployeeController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,10 +39,10 @@ public class Main {
         employees.addAll(Arrays.asList(emp4, emp1, emp3, emp2, emp5));
 
         //Instância do Controlador
-        ControllerEmployees controllerEmployees = new ControllerEmployees(employees);
+        EmployeeController employeeController = new EmployeeController(employees);
 
         //Solicitando e Buscando Funcionário
-        controllerEmployees.getEmployees().forEach(e -> {
+        employeeController.getEmployees().forEach(e -> {
             System.out.println(e.printEmployee());
         });
         System.out.println("Digite o código do funcionário que solicitará o pagamento:");
@@ -54,14 +54,14 @@ public class Main {
 
         //Executando tarefas
         try {
-            employee = controllerEmployees.foundEmployee(varReadEmployee);
-            indexEmployee = controllerEmployees.foundEmployeeIndex(varReadEmployee);
+            employee = employeeController.foundEmployee(varReadEmployee);
+            indexEmployee = employeeController.foundEmployeeIndex(varReadEmployee);
             Payment payment = new Payment(employee, varReadValue);
             if (payment.checkPayment()) {
                 System.out.println(payment.paymentStatusMessageApproved());
             } else {
                 System.out.println(payment.paymentStatusMessageRefused());
-                payment.setEmployee(controllerEmployees.foundNextSkilledEmployee(indexEmployee, varReadValue));
+                payment.setEmployee(employeeController.foundNextSkilledEmployee(indexEmployee, varReadValue));
                 System.out.println(payment.paymentStatusMessageApproved());
             }
         } catch (Exception e) {
